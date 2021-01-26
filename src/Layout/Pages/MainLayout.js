@@ -1,9 +1,11 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+
 import styled from "@emotion/styled";
-// Components
+
 import PokemonRoute from "./PokemonRoute";
 
+// Styled Components
 const Background = styled.div`
   background-color: #ffffff;
   background: radial-gradient(
@@ -38,7 +40,7 @@ const Background = styled.div`
 
 const Container = styled.div`
   box-sizing: border-box;
-  max-width: 900px;
+  max-width: 1200px;
 
   margin: 0 auto;
   margin-top: 3rem;

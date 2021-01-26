@@ -8,6 +8,7 @@ import { mq } from "../../../Theme";
 
 import PokemonCard from "./PokemonCard";
 
+// Styled Components
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -45,19 +46,22 @@ const PokemonList = () => {
 
   return (
     <>
-      <Container
-        css={mq({
-          color: ["blue", "gray", "hotpink"],
-        })}
-      >
-        {pokemons.map((pokemon) => (
-          <PokemonCard
-            key={pokemon.id}
-            name={pokemon.name}
-            img={pokemon.image}
-          />
-        ))}
-      </Container>
+      {loading && <i class="fas fa-spinner fa-pulse"></i>}
+      {!loading && (
+        <Container
+          css={mq({
+            color: ["blue", "gray", "hotpink"],
+          })}
+        >
+          {pokemons.map((pokemon) => (
+            <PokemonCard
+              key={pokemon.id}
+              name={pokemon.name}
+              img={pokemon.image}
+            />
+          ))}
+        </Container>
+      )}
       {activePage !== 1 && (
         <button type="button" onClick={prevPage}>
           Prev

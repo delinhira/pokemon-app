@@ -7,7 +7,7 @@ export const theme = {
   },
 };
 
-export const breakpoints = [420, 720, 1200];
+export const breakpoints = [500, 900, 1200];
 
 export const mq = facepaint(
   breakpoints.map((bp) => `@media (min-width: ${bp}px)`)

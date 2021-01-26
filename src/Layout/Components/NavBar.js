@@ -1,13 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import logo from "../../Images/logo.png";
 
+// Styled Components
 const Container = styled.div`
   background-color: red;
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
 `;
 
 const MenuWrap = styled.div`
@@ -16,14 +18,16 @@ const MenuWrap = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 2rem;
+  height: 2.5rem;
 `;
 
 const NavBar = () => {
   return (
     <Container>
       <MenuWrap>
-        <Logo src={logo} alt="Pokemon" />
+        <Link to="/pokemon">
+          <Logo src={logo} alt="Pokemon" />
+        </Link>
       </MenuWrap>
     </Container>
   );

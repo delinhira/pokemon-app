@@ -1,9 +1,11 @@
 import React from "react";
-// /** @jsxImportSource @emotion/react */
-import styled from "@emotion/styled";
-import { mq } from "../../../Theme";
 import { Link } from "react-router-dom";
 
+/** @jsxImportSource @emotion/react */
+import styled from "@emotion/styled";
+import { mq } from "../../../Theme";
+
+// Styled Components
 const Container = styled.div`
   box-sizing: border-box;
   background-color: white;
@@ -42,7 +44,7 @@ const PokemonCard = ({ name, img }) => {
   return (
     <Container
       css={mq({
-        width: ["95%", "48%", "22%"],
+        width: ["95%", "45%", "22%"],
       })}
     >
       <Link to={`/pokemon/${name}`}>
