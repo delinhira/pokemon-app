@@ -4,9 +4,12 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "@emotion/styled";
 
 import PokemonRoute from "./PokemonRoute";
+import CatchPokemon from "../Components/CatchPokemon";
 
 // Styled Components
 const Background = styled.div`
+  /* height: 100vh; */
+  min-height: 100vh;
   background-color: #ffffff;
   background: radial-gradient(
       circle,
@@ -43,9 +46,8 @@ const Container = styled.div`
   max-width: 1200px;
 
   margin: 0 auto;
-  margin-top: 3rem;
   padding: 3rem;
-  /* background-color: white; */
+  padding-top: 6rem;
 `;
 
 const MainPage = () => {

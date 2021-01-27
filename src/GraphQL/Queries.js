@@ -26,6 +26,7 @@ export const GET_POKEMON_DETAIL = gql`
       base_experience
       height
       weight
+      message
       stats {
         base_stat
         stat {

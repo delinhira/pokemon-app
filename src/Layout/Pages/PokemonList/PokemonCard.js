@@ -44,7 +44,7 @@ const PokemonCard = ({ name, img }) => {
   return (
     <Container
       css={mq({
-        width: ["95%", "45%", "22%"],
+        width: ["22%", "45%", "95%"],
       })}
     >
       <Link to={`/pokemon/${name}`}>
