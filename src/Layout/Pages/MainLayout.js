@@ -3,8 +3,10 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import styled from "@emotion/styled";
 
-import PokemonRoute from "./PokemonRoute";
-import CatchPokemon from "../Components/CatchPokemon";
+import PokemonRouter from "./PokemonRouter";
+import MyPokemonList from "./PokemonList/MyPokemonList";
+import { ModalProvider } from "../../Context/ModalContext";
+// import CatchPokemon from "../Components/CatchPokemon";
 
 // Styled Components
 const Background = styled.div`
@@ -54,15 +56,19 @@ const MainPage = () => {
   return (
     <Background>
       <Container>
-        <Switch>
-          <Route path="/my-pokemon">My Pokemon</Route>
-          <Route path="/pokemon">
-            <PokemonRoute />
-          </Route>
-          <Route path="/404">Error 404: Not Found</Route>
-          <Redirect exact from="/" to="/pokemon" />
-          <Redirect from="*" to="/404" />
-        </Switch>
+        <ModalProvider>
+          <Switch>
+            <Route path="/my-pokemon">
+              <MyPokemonList />
+            </Route>
+            <Route path="/pokemon">
+              <PokemonRouter />
+            </Route>
+            <Route path="/404">Error 404: Not Found</Route>
+            <Redirect exact from="/" to="/pokemon" />
+            <Redirect from="*" to="/404" />
+          </Switch>
+        </ModalProvider>
       </Container>
     </Background>
   );

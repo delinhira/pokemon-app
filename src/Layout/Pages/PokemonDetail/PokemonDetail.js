@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { useQuery } from "@apollo/client";
@@ -9,7 +9,9 @@ import styled from "@emotion/styled";
 
 import DetailTabs from "./DetailTabs";
 import pokeball from "../../../Images/pokeball.png";
-import CatchPokemon from "../../Components/CatchPokemon";
+import CatchPokemon from "../../Components/Modals/CatchPokemon";
+import { ModalContext } from "../../../Context/ModalContext";
+import LoadingPage from "../../Components/LoadingPage";
 
 // Styled Components
 const BackIcon = styled.div`
@@ -22,12 +24,30 @@ const BackIcon = styled.div`
   }
 `;
 
+const Container = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  width: 100%;
+`;
+
 const Image = styled.div`
   img {
     width: 100%;
-    &.pokeball {
-      width: 12%;
-    }
+  }
+`;
+
+const Pokeball = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 30%;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+  p {
+    margin: 0;
   }
 `;
 
@@ -36,11 +56,12 @@ const Title = styled.h1`
   margin-bottom: 0;
 `;
 
-const PokemonDetail = () => {
+const PokemonDetail = ({ myPokemon }) => {
   const { pokemonName } = useParams();
   const [dataExist, SetDataExist] = useState(true);
   const [pokemon, setPokemon] = useState();
-  const [catchPokemon, setCatchPokemon] = useState(false);
+  const { catchModal, toggleCatchModal } = useContext(ModalContext);
+  console.log(catchModal);
 
   const gqlVariables = {
     name: pokemonName,
@@ -63,8 +84,8 @@ const PokemonDetail = () => {
   }, [data]);
 
   return (
-    <div>
-      {loading && <i class="fas fa-spinner fa-pulse"></i>}
+    <Container>
+      {loading && <LoadingPage />}
       {!dataExist && <Title>Data doesn't exist.</Title>}
       {pokemon && (
         <>
@@ -81,28 +102,22 @@ const PokemonDetail = () => {
           </Link>
           <Title>{pokemon.name.toUpperCase()}</Title>
           <Image>
-            <div className="spritesContainer">
-              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-            </div>
-            <button onClick={() => setCatchPokemon(true)}>
-              <img className="pokeball" src={pokeball} alt="pokeball" />
-            </button>
-          </Image>
-          {/* {catched && (
-            <form onSubmit={submitMyPokemon}>
-              <input
-                type="text"
-                value={pokemonNickname}
-                onChange={(e) => setPokemonNickname(e.target.value)}
+            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            <Pokeball>
+              <img
+                className="pokeball"
+                src={pokeball}
+                alt="pokeball"
+                onClick={toggleCatchModal}
               />
-              <button type="submit">Submit</button>
-            </form>
-          )} */}
+              <p>Tap the pokeball to catch {pokemon.name}</p>
+            </Pokeball>
+          </Image>
           <DetailTabs pokemon={pokemon} />
-          {/* {catchPokemon && <CatchPokemon pokemon={pokemon} />} */}
+          <CatchPokemon pokemon={pokemon} />
         </>
       )}
-    </div>
+    </Container>
   );
 };
 

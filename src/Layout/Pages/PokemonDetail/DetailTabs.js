@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
 import styled from "@emotion/styled";
-import PokemonEvolution from "./PokemonEvolution";
 import PokemonStats from "./PokemonStats";
-import { act } from "react-dom/test-utils";
 import PokemonAbout from "./PokemonAbout";
 
 // Styled Components
@@ -64,12 +62,6 @@ const DetailTabs = ({ pokemon }) => {
         >
           Stats
         </Option>
-        {/* <Option
-          className={activeTab === "evolution" ? "active" : ""}
-          onClick={() => setActiveTab("evolution")}
-        >
-          Evolution
-        </Option> */}
       </Options>
 
       <Container>
@@ -85,12 +77,6 @@ const DetailTabs = ({ pokemon }) => {
             <PokemonStats stats={pokemon.stats} />
           </>
         )}
-        {/* {activeTab === "evolution" && (
-          <>
-            <Title>Evolution</Title>
-            <PokemonEvolution id={pokemon.id} />
-          </>
-        )} */}
       </Container>
     </>
   );

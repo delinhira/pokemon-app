@@ -7,6 +7,7 @@ import styled from "@emotion/styled";
 import { mq } from "../../../Theme";
 
 import PokemonCard from "./PokemonCard";
+import LoadingPage from "../../Components/LoadingPage";
 
 // Styled Components
 const Container = styled.div`
@@ -46,30 +47,32 @@ const PokemonList = () => {
 
   return (
     <>
-      {loading && <i class="fas fa-spinner fa-pulse"></i>}
+      {loading && <LoadingPage />}
       {!loading && (
-        <Container
-          css={mq({
-            color: ["blue", "gray", "hotpink"],
-          })}
-        >
-          {pokemons.map((pokemon) => (
-            <PokemonCard
-              key={pokemon.id}
-              name={pokemon.name}
-              img={pokemon.image}
-            />
-          ))}
-        </Container>
+        <>
+          <Container
+            css={mq({
+              color: ["blue", "gray", "hotpink"],
+            })}
+          >
+            {pokemons.map((pokemon) => (
+              <PokemonCard
+                key={pokemon.id}
+                name={pokemon.name}
+                img={pokemon.image}
+              />
+            ))}
+          </Container>
+          {activePage !== 1 && (
+            <button type="button" onClick={prevPage}>
+              Prev
+            </button>
+          )}
+          <button type="button" onClick={nextPage}>
+            Next
+          </button>
+        </>
       )}
-      {activePage !== 1 && (
-        <button type="button" onClick={prevPage}>
-          Prev
-        </button>
-      )}
-      <button type="button" onClick={nextPage}>
-        Next
-      </button>
     </>
   );
 };

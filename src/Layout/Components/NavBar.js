@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import logo from "../../Images/logo.png";
 
@@ -9,27 +9,31 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  width: 100%;
+  width: 100vw;
   padding: 0.5rem;
   z-index: 1;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 `;
 
 const MenuWrap = styled.div`
   max-width: 1300px;
   margin: 0 auto;
-  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-const NavLink = styled.div`
+const NavLinkContainer = styled.div`
   a {
     text-decoration: none;
     font-weight: 600;
-    color: gray;
-    margin: 0 0.5rem;
+    color: ${(props) => props.theme.colors.blue};
+    margin: 0 1rem;
+  }
+  .active {
+    color: ${(props) => props.theme.colors.yellow};
+    border-bottom: 2px solid ${(props) => props.theme.colors.yellow};
   }
 `;
 
@@ -38,19 +42,29 @@ const Logo = styled.img`
 `;
 
 const NavBar = () => {
+  const pathName = useLocation().pathname;
+
   return (
     <Container>
-      <div>
-        <MenuWrap>
-          <Link to="/pokemon">
-            <Logo src={logo} alt="Pokemon" />
+      <MenuWrap>
+        <Link to="/pokemon">
+          <Logo src={logo} alt="Pokemon" />
+        </Link>
+        <NavLinkContainer>
+          <Link
+            to="/pokemon"
+            className={pathName === "/pokemon" ? "active" : ""}
+          >
+            Home
           </Link>
-          <NavLink>
-            <Link to="/pokemon">Home</Link>
-            <Link to="/my-pokemon">My Pokemon</Link>
-          </NavLink>
-        </MenuWrap>
-      </div>
+          <Link
+            to="/my-pokemon"
+            className={pathName === "/my-pokemon" ? "active" : ""}
+          >
+            My Pokemon
+          </Link>
+        </NavLinkContainer>
+      </MenuWrap>
     </Container>
   );
 };

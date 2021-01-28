@@ -6,6 +6,7 @@ import PokemonDetail from "./PokemonDetail/PokemonDetail";
 
 const PokemonRoute = () => {
   let { path } = useRouteMatch();
+  console.log(path);
 
   return (
     <div>
