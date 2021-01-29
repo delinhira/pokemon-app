@@ -1,7 +1,9 @@
+import React, { useContext, useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import React, { useContext } from "react";
 import { ModalContext } from "../../../Context/ModalContext";
+import { toTitleCase } from "../../../helper";
 import { Button, Modal, Overlay, Text } from "../Components";
+import pokeball from "../../../Images/pokeball.gif";
 
 const ButtonContainer = styled.div`
   width: 100%;
@@ -9,25 +11,82 @@ const ButtonContainer = styled.div`
   justify-content: space-around;
 `;
 
-const ReleasePokemon = ({ nickname }) => {
+const ReleasePokemon = () => {
+  const [loading, setLoading] = useState(false);
+  const [released, setReleased] = useState();
   const { pokemonNickname, releaseModal, toggleReleaseModal } = useContext(
     ModalContext
   );
-  console.log("modal", pokemonNickname, nickname);
-  const releasePokemon = () => {};
+
+  useEffect(() => {
+    setReleased(false);
+  }, []);
+
+  const releaseHandle = () => {
+    setLoading(true);
+
+    let myPokemonList = JSON.parse(localStorage.getItem("myPokemonList"));
+    myPokemonList = myPokemonList.filter(
+      (pokemon) => pokemon.nickname !== pokemonNickname
+    );
+    localStorage.setItem("myPokemonList", JSON.stringify(myPokemonList));
+
+    setTimeout(() => {
+      setLoading(false);
+      setReleased(true);
+    }, 3000);
+  };
+
+  const loadingRender = () => {
+    return (
+      <>
+        <Text sm bold>
+          Releasing {toTitleCase(pokemonNickname)}...
+        </Text>
+        <img src={pokeball} alt="pokeball" />
+      </>
+    );
+  };
+
+  const modalContentRender = () => {
+    if (released) {
+      return (
+        <>
+          <Text sm mb bold>
+            {toTitleCase(pokemonNickname)} has been released :D
+          </Text>
+          <Button type="button" onClick={() => toggleReleaseModal("")}>
+            OK
+          </Button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Text sm mb bold>
+            Release {pokemonNickname}?
+          </Text>
+          <ButtonContainer>
+            <Button type="button" onClick={releaseHandle}>
+              Confirm
+            </Button>
+            <Button red type="button" onClick={() => toggleReleaseModal("")}>
+              Cancel
+            </Button>
+          </ButtonContainer>
+        </>
+      );
+    }
+  };
 
   return (
     <Overlay display={releaseModal ? true : undefined}>
       <Modal>
-        <Text>Release {nickname}?</Text>
-        <ButtonContainer>
-          <Button type="button" onClick={releasePokemon}>
-            Confirm
-          </Button>
-          <Button red type="button" onClick={toggleReleaseModal}>
-            Cancel
-          </Button>
-        </ButtonContainer>
+        {!releaseModal
+          ? null
+          : loading
+          ? loadingRender()
+          : modalContentRender()}
       </Modal>
     </Overlay>
   );

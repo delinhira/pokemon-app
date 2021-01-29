@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import pokeball from "../../../Images/pokeball.gif";
 import { ModalContext } from "../../../Context/ModalContext";
-import { Button, Text } from "../Components";
 import { toTitleCase } from "../../../helper";
+import { Button, Modal, Overlay, Text } from "../Components";
+import pokeball from "../../../Images/pokeball.gif";
 
 const ButtonContainer = styled.div`
   width: 100%;
@@ -26,34 +26,6 @@ const Form = styled.form`
     padding: 0 0.5rem;
     width: 100%;
   }
-`;
-
-const Modal = styled.div`
-  box-sizing: border-box;
-  background-color: white;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  width: 100%;
-  img {
-    width: 50%;
-  }
-`;
-
-const Overlay = styled.div`
-  display: ${(props) => (props.display ? "flex" : "none")};
-  min-height: 100vh;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  padding: 0 2rem;
 `;
 
 const CatchPokemon = ({ pokemon }) => {
@@ -107,7 +79,7 @@ const CatchPokemon = ({ pokemon }) => {
     }
   };
 
-  const loadingContent = () => {
+  const loadingRender = () => {
     return (
       <>
         <Text sm bold>
@@ -118,7 +90,7 @@ const CatchPokemon = ({ pokemon }) => {
     );
   };
 
-  const resultContent = () => {
+  const resultContentRender = () => {
     if (catched) {
       if (addSuccess) {
         return (
@@ -175,7 +147,9 @@ const CatchPokemon = ({ pokemon }) => {
 
   return (
     <Overlay display={catchModal ? true : undefined}>
-      <Modal>{!loading ? resultContent() : loadingContent()}</Modal>
+      <Modal>
+        {!catchModal ? null : loading ? loadingRender() : resultContentRender()}
+      </Modal>
     </Overlay>
   );
 };

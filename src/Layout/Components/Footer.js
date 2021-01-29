@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-
 import { Text } from "./Components";
 
 const Container = styled.div`
@@ -23,7 +22,7 @@ const Container = styled.div`
 const Footer = () => {
   return (
     <Container>
-      <Text white>&copy; lin 2020</Text>
+      <Text white>&copy; Delinda 2020</Text>
     </Container>
   );
 };

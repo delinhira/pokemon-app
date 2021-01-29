@@ -8,12 +8,13 @@ import { GET_POKEMON_DETAIL } from "../../../GraphQL/Queries";
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 
-import DetailTabs from "./DetailTabs";
-import pokeball from "../../../Images/pokeball.png";
-import CatchPokemon from "../../Components/Modals/CatchPokemon";
-import LoadingPage from "../../Components/LoadingPage";
-import { Text } from "../../Components/Components";
 import { toTitleCase } from "../../../helper";
+import CatchPokemon from "../../Components/Modals/CatchPokemon";
+import DetailTabs from "./DetailTabs";
+import LoadingPage from "../../Components/LoadingPage";
+import pokeball from "../../../Images/pokeball.png";
+import { Text } from "../../Components/Components";
+import ReleasePokemon from "../../Components/Modals/ReleasePokemon";
 
 // Styled Components
 const BackIcon = styled.div`
@@ -21,7 +22,6 @@ const BackIcon = styled.div`
   display: flex;
   align-items: center;
   p {
-    margin: 0;
     margin-left: 0.5rem;
   }
 `;
@@ -32,10 +32,8 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Image = styled.div`
-  img {
-    width: 100%;
-  }
+const Image = styled.img`
+  width: 100%;
 `;
 
 const Pokeball = styled.div`
@@ -53,8 +51,7 @@ const PokemonDetail = ({ myPokemon }) => {
   const { pokemonName } = useParams();
   const [dataExist, SetDataExist] = useState(true);
   const [pokemon, setPokemon] = useState();
-  const { catchModal, toggleCatchModal } = useContext(ModalContext);
-  console.log(catchModal);
+  const { toggleCatchModal } = useContext(ModalContext);
 
   const gqlVariables = {
     name: pokemonName,
@@ -87,7 +84,7 @@ const PokemonDetail = ({ myPokemon }) => {
         >
           <BackIcon>
             <i className="fas fa-chevron-left fa-2x" />
-            <p>Back</p>
+            <Text red>Back</Text>
           </BackIcon>
         </Link>
       </>
@@ -96,8 +93,8 @@ const PokemonDetail = ({ myPokemon }) => {
 
   const imageRender = () => {
     return (
-      <Image>
-        <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+      <>
+        <Image src={pokemon.sprites.front_default} alt={pokemon.name} />
         <Pokeball>
           <img
             className="pokeball"
@@ -109,7 +106,7 @@ const PokemonDetail = ({ myPokemon }) => {
             Tap the pokeball to catch {toTitleCase(pokemon.name)}
           </Text>
         </Pokeball>
-      </Image>
+      </>
     );
   };
 
@@ -132,6 +129,7 @@ const PokemonDetail = ({ myPokemon }) => {
             </>
           )
         )}
+        <ReleasePokemon />
       </Container>
     </>
   );

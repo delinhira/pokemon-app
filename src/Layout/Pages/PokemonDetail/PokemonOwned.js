@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { Button, Text } from "../../Components/Components";
 import { toTitleCase } from "../../../helper";
+import { Button, Text } from "../../Components/Components";
+import { ModalContext } from "../../../Context/ModalContext";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const Items = styled.div`
   display: flex;
   justify-content: space-between;
@@ -22,10 +24,10 @@ const Items = styled.div`
 
 const PokemonOwned = ({ id }) => {
   const [myPokemon, setMyPokemon] = useState([]);
+  const { toggleReleaseModal } = useContext(ModalContext);
 
   useEffect(() => {
     setMyPokemon(JSON.parse(localStorage.getItem("myPokemonList")));
-    console.log(myPokemon);
   }, []);
 
   return (
@@ -41,7 +43,13 @@ const PokemonOwned = ({ id }) => {
           pokemon.id === id ? (
             <Items>
               <Text bold>{toTitleCase(pokemon.nickname)}</Text>
-              <Button red>Release</Button>
+              <Button
+                red
+                type="button"
+                onClick={() => toggleReleaseModal(pokemon.nickname)}
+              >
+                Release
+              </Button>
             </Items>
           ) : null
         )

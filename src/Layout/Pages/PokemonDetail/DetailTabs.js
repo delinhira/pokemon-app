@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-
 import { Text } from "../../Components/Components";
-import PokemonMoves from "./PokemonMoves";
 import PokemonAbout from "./PokemonAbout";
+import PokemonMoves from "./PokemonMoves";
 import PokemonOwned from "./PokemonOwned";
 
 // Styled Components
@@ -83,7 +82,6 @@ const DetailTabs = ({ pokemon }) => {
           Owned
         </Option>
       </Options>
-
       <Container>
         {activeTab === "about" && (
           <>

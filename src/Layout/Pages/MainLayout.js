@@ -8,6 +8,7 @@ import MyPokemonList from "./PokemonList/MyPokemonList";
 import { ModalProvider } from "../../Context/ModalContext";
 // import CatchPokemon from "../Components/CatchPokemon";
 import background from "../../Images/background.jpg";
+import ReleasePokemon from "../Components/Modals/ReleasePokemon";
 
 // Styled Components
 const Background = styled.div`
@@ -44,6 +45,7 @@ const MainPage = () => {
             <Redirect exact from="/" to="/pokemon" />
             <Redirect from="*" to="/404" />
           </Switch>
+          {/* <ReleasePokemon /> */}
         </ModalProvider>
       </Container>
     </Background>

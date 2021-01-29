@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ModalContext } from "../../../Context/ModalContext";
-
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { mq } from "../../../Theme";
 
-import ReleasePokemon from "../../Components/Modals/ReleasePokemon";
-import { Button, Text } from "../../Components/Components";
 import { toTitleCase } from "../../../helper";
+import { Button, Text } from "../../Components/Components";
 
 // Styled Components
 const Container = styled.div`
@@ -60,7 +58,7 @@ const responsive = mq({
 });
 
 const PokemonCard = ({ name, img, nickname }) => {
-  const { pokemonNickname, toggleReleaseModal } = useContext(ModalContext);
+  const { toggleReleaseModal } = useContext(ModalContext);
 
   return (
     <Container css={responsive}>

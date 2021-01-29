@@ -1,13 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-
 import { mq } from "../../../Theme";
-import { Text } from "../../Components/Components";
 import { toTitleCase } from "../../../helper";
-
-const AbilitiesBox = styled.div``;
-
-const Container = styled.div``;
+import { Text } from "../../Components/Components";
 
 const StatBox = styled.div`
   display: flex;
@@ -32,7 +27,7 @@ const PokemonType = styled.div``;
 const PokemonAbout = ({ abilities, stats, type }) => {
   const abilitiesRender = () => {
     return (
-      <AbilitiesBox>
+      <>
         <Text sm bold white className="title">
           Abilities
         </Text>
@@ -41,7 +36,7 @@ const PokemonAbout = ({ abilities, stats, type }) => {
             {toTitleCase(ability.ability.name)}
           </Text>
         ))}
-      </AbilitiesBox>
+      </>
     );
   };
 
@@ -69,10 +64,10 @@ const PokemonAbout = ({ abilities, stats, type }) => {
   };
 
   return (
-    <Container>
+    <>
       {abilitiesRender()}
       {statsRender()}
-    </Container>
+    </>
   );
 };
 

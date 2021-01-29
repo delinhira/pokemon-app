@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-
 import LoadingPage from "../../Components/LoadingPage";
 import PokemonCard from "./PokemonCard";
 import { Text } from "../../Components/Components";
+import ReleasePokemon from "../../Components/Modals/ReleasePokemon";
 
 const Container = styled.div`
   padding: 2rem;
@@ -27,8 +27,8 @@ const MyPokemonList = () => {
     <>
       {loading ? (
         <LoadingPage />
-      ) : !myPokemon ? (
-        <Text pt pb bold shadow>
+      ) : !myPokemon || myPokemon.length === 0 ? (
+        <Text sm pt pb bold shadow>
           You don't own any pokemon.
         </Text>
       ) : (
@@ -45,6 +45,7 @@ const MyPokemonList = () => {
               nickname={pokemon.nickname}
             />
           ))}
+          <ReleasePokemon />
         </Container>
       )}
     </>
