@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from "react";
+import styled from "@emotion/styled";
+
 import LoadingPage from "../../Components/LoadingPage";
 import PokemonCard from "./PokemonCard";
+import { Text } from "../../Components/Components";
+
+const Container = styled.div`
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100;
+`;
 
 const MyPokemonList = () => {
   const [loading, setLoading] = useState(true);
@@ -11,21 +22,30 @@ const MyPokemonList = () => {
     setMyPokemon(JSON.parse(localStorage.getItem("myPokemonList")));
     setLoading(false);
   }, []);
-  // const myPokemonList = JSON.parse(localStorage.getItem("myPokemonList"));
 
   return (
     <>
       {loading ? (
         <LoadingPage />
+      ) : !myPokemon ? (
+        <Text pt pb bold shadow>
+          You don't own any pokemon.
+        </Text>
       ) : (
-        myPokemon.map((pokemon) => (
-          <PokemonCard
-            key={pokemon.id}
-            name={pokemon.name}
-            img={pokemon.sprites}
-            nickname={pokemon.nickname}
-          />
-        ))
+        <Container>
+          <Text md bold mb>
+            You have {myPokemon.length}{" "}
+            {myPokemon.length > 1 ? "pokemons" : "pokemon"}
+          </Text>
+          {myPokemon.map((pokemon) => (
+            <PokemonCard
+              key={pokemon.id}
+              name={pokemon.name}
+              img={pokemon.sprites}
+              nickname={pokemon.nickname}
+            />
+          ))}
+        </Container>
       )}
     </>
   );

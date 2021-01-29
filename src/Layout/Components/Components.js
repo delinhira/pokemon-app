@@ -21,10 +21,23 @@ export const Button = styled.button`
 `;
 
 export const Text = styled.p`
-  color: ${(props) =>
-    props.red ? props.theme.colors.red : props.theme.colors.blue};
-  font-weight: 600;
   text-align: center;
+  margin-top: ${(props) => (props.mt ? "1rem" : "0")};
+  margin-bottom: ${(props) => (props.mb ? "1rem" : "0")};
+  padding-top: ${(props) => (props.pt ? "1rem" : "0")};
+  padding-bottom: ${(props) => (props.pb ? "1rem" : "0")};
+  color: ${(props) =>
+    props.red
+      ? props.theme.colors.red
+      : props.white
+      ? "white"
+      : props.theme.colors.blue};
+  font-weight: ${(props) =>
+    props.bold ? "600" : props.bolder ? "900" : "normal"};
+  font-size: ${(props) =>
+    props.lg ? "36px" : props.md ? "24px" : props.sm ? "18px" : "14px"};
+  text-shadow: ${(props) =>
+    props.shadow ? "0 0 2px rgba(255, 255, 255, 0.8)" : ""};
 `;
 
 export const Modal = styled.div`

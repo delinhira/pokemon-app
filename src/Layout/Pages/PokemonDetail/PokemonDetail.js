@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { ModalContext } from "../../../Context/ModalContext";
 
 import { useQuery } from "@apollo/client";
 import { GET_POKEMON_DETAIL } from "../../../GraphQL/Queries";
@@ -10,8 +11,9 @@ import styled from "@emotion/styled";
 import DetailTabs from "./DetailTabs";
 import pokeball from "../../../Images/pokeball.png";
 import CatchPokemon from "../../Components/Modals/CatchPokemon";
-import { ModalContext } from "../../../Context/ModalContext";
 import LoadingPage from "../../Components/LoadingPage";
+import { Text } from "../../Components/Components";
+import { toTitleCase } from "../../../helper";
 
 // Styled Components
 const BackIcon = styled.div`
@@ -25,9 +27,8 @@ const BackIcon = styled.div`
 `;
 
 const Container = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
+  box-sizing: border-box;
+  padding: 2rem;
   width: 100%;
 `;
 
@@ -46,14 +47,6 @@ const Pokeball = styled.div`
     margin: 0 auto;
     cursor: pointer;
   }
-  p {
-    margin: 0;
-  }
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  margin-bottom: 0;
 `;
 
 const PokemonDetail = ({ myPokemon }) => {
@@ -83,41 +76,64 @@ const PokemonDetail = ({ myPokemon }) => {
     console.log(data);
   }, [data]);
 
+  const BackButtonRender = () => {
+    return (
+      <>
+        <Link
+          to="/pokemon"
+          css={{
+            textDecoration: "none",
+          }}
+        >
+          <BackIcon>
+            <i className="fas fa-chevron-left fa-2x" />
+            <p>Back</p>
+          </BackIcon>
+        </Link>
+      </>
+    );
+  };
+
+  const imageRender = () => {
+    return (
+      <Image>
+        <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+        <Pokeball>
+          <img
+            className="pokeball"
+            src={pokeball}
+            alt="pokeball"
+            onClick={toggleCatchModal}
+          />
+          <Text bold shadow>
+            Tap the pokeball to catch {toTitleCase(pokemon.name)}
+          </Text>
+        </Pokeball>
+      </Image>
+    );
+  };
+
   return (
-    <Container>
+    <>
       {loading && <LoadingPage />}
-      {!dataExist && <Title>Data doesn't exist.</Title>}
-      {pokemon && (
-        <>
-          <Link
-            to="/pokemon"
-            css={{
-              textDecoration: "none",
-            }}
-          >
-            <BackIcon>
-              <i className="fas fa-chevron-left fa-2x" />
-              <p>Back</p>
-            </BackIcon>
-          </Link>
-          <Title>{pokemon.name.toUpperCase()}</Title>
-          <Image>
-            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-            <Pokeball>
-              <img
-                className="pokeball"
-                src={pokeball}
-                alt="pokeball"
-                onClick={toggleCatchModal}
-              />
-              <p>Tap the pokeball to catch {pokemon.name}</p>
-            </Pokeball>
-          </Image>
-          <DetailTabs pokemon={pokemon} />
-          <CatchPokemon pokemon={pokemon} />
-        </>
-      )}
-    </Container>
+      <Container>
+        {!loading && !dataExist ? (
+          <Text>Data doesn't exist.</Text>
+        ) : (
+          pokemon && (
+            <>
+              {BackButtonRender()}
+              <Text lg bold shadow mt>
+                {toTitleCase(pokemon.name)}
+              </Text>
+              {imageRender()}
+              <DetailTabs pokemon={pokemon} myPokemon={myPokemon} />
+              <CatchPokemon pokemon={pokemon} />
+            </>
+          )
+        )}
+      </Container>
+    </>
   );
 };
 

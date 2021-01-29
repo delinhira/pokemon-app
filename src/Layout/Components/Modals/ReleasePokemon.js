@@ -17,7 +17,7 @@ const ReleasePokemon = ({ nickname }) => {
   const releasePokemon = () => {};
 
   return (
-    <Overlay display={releaseModal}>
+    <Overlay display={releaseModal ? true : undefined}>
       <Modal>
         <Text>Release {nickname}?</Text>
         <ButtonContainer>

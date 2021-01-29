@@ -7,16 +7,27 @@ import styled from "@emotion/styled";
 import { mq } from "../../../Theme";
 
 import ReleasePokemon from "../../Components/Modals/ReleasePokemon";
-import { Button } from "../../Components/Components";
+import { Button, Text } from "../../Components/Components";
+import { toTitleCase } from "../../../helper";
 
 // Styled Components
 const Container = styled.div`
   box-sizing: border-box;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
   margin: 0.5rem;
   padding: 1rem;
-  border: 1px solid lightgray;
-  border-radius: 5px;
+  border: 2px solid ${(props) => props.theme.colors.yellow};
+  border-radius: 10px;
+
+  background-color: #f9f9f9;
+  opacity: 1;
+  background-image: linear-gradient(135deg, #efefef 25%, transparent 25%),
+    linear-gradient(225deg, #efefef 25%, transparent 25%),
+    linear-gradient(45deg, #efefef 25%, transparent 25%),
+    linear-gradient(315deg, #efefef 25%, #f9f9f9 25%);
+  background-position: 4px 0, 4px 0, 0 0, 0 0;
+  background-size: 4px 4px;
+  background-repeat: repeat;
 
   &:hover {
     box-shadow: 1px 4px 0.5rem rgba(0, 0, 0, 0.1);
@@ -24,11 +35,6 @@ const Container = styled.div`
 
   a {
     text-decoration: none;
-    color: hotpink;
-
-    &:visited {
-      color: hotpink;
-    }
   }
 
   button {
@@ -41,18 +47,12 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const Nickname = styled.p`
+const Title = styled.div`
+  margin-top: 0.5rem;
+  background-color: ${(props) => props.theme.colors.yellow};
   color: ${(props) => props.theme.colors.blue};
-  text-align: center;
-  font-weight: 600;
-`;
-
-const Title = styled.p`
-  text-align: center;
-  margin: 0;
-  font-weight: 700;
-  font-size: 1rem;
-  background-color: ${(props) => props.theme.colors.secondary};
+  padding: 0.5rem;
+  border-radius: 50px;
 `;
 
 const responsive = mq({
@@ -61,14 +61,21 @@ const responsive = mq({
 
 const PokemonCard = ({ name, img, nickname }) => {
   const { pokemonNickname, toggleReleaseModal } = useContext(ModalContext);
-  console.log(pokemonNickname);
 
   return (
     <Container css={responsive}>
       <Link to={`/pokemon/${name}`}>
-        <Title>{name.toUpperCase()}</Title>
+        <Title>
+          <Text md bold>
+            {toTitleCase(name)}
+          </Text>
+        </Title>
         <Image src={img} alt={name} />
-        {nickname && <Nickname>{nickname}</Nickname>}
+        {nickname && (
+          <Text mb md bold>
+            &bull; {toTitleCase(nickname)} &bull;
+          </Text>
+        )}
       </Link>
       {nickname && (
         <Button red type="button" onClick={() => toggleReleaseModal(nickname)}>

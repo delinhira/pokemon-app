@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import pokeball from "../../../Images/pokeball.gif";
 import { ModalContext } from "../../../Context/ModalContext";
 import { Button, Text } from "../Components";
+import { toTitleCase } from "../../../helper";
 
 const ButtonContainer = styled.div`
   width: 100%;
@@ -59,16 +60,22 @@ const CatchPokemon = ({ pokemon }) => {
   const [pokemonNickname, setPokemonNickname] = useState();
   const [loading, setLoading] = useState(true);
   const [catched, setCatched] = useState(null);
+  const [addSuccess, setAddsuccess] = useState(false);
   const [duplicateNickname, setDuplicateNickname] = useState(false);
   const { catchModal, toggleCatchModal } = useContext(ModalContext);
 
   useEffect(() => {
-    setLoading(true);
-    setDuplicateNickname(false);
-    Math.random() < 0.5 ? setCatched(true) : setCatched(false);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+    if (catchModal) {
+      setLoading(true);
+      setDuplicateNickname(false);
+      setAddsuccess(false);
+
+      Math.random() < 0.5 ? setCatched(true) : setCatched(false);
+
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }
   }, [catchModal]);
 
   const addMyPokemon = (e) => {
@@ -90,21 +97,22 @@ const CatchPokemon = ({ pokemon }) => {
       if (checkDuplicate) {
         setDuplicateNickname(true);
       } else {
+        setAddsuccess(true);
         myPokemonList = [...myPokemonList, myPokemon];
         localStorage.setItem("myPokemonList", JSON.stringify(myPokemonList));
-        setDuplicateNickname(false);
-        toggleCatchModal();
       }
     } else {
+      setAddsuccess(true);
       localStorage.setItem("myPokemonList", JSON.stringify([myPokemon]));
-      toggleCatchModal();
     }
   };
 
   const loadingContent = () => {
     return (
       <>
-        <Text>Catching {pokemon.name}...</Text>
+        <Text sm bold>
+          Catching {toTitleCase(pokemon.name)}...
+        </Text>
         <img src={pokeball} alt="pokeball" />
       </>
     );
@@ -112,35 +120,49 @@ const CatchPokemon = ({ pokemon }) => {
 
   const resultContent = () => {
     if (catched) {
-      return (
-        <Form onSubmit={addMyPokemon}>
-          <Text>
-            Congratulation! You did it! <br /> Give it a nickname
-          </Text>
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-          <input
-            required
-            type="text"
-            placeholder="Name your pokemon :D"
-            onChange={(e) => setPokemonNickname(e.target.value)}
-          />
-          {duplicateNickname && (
-            <Text red>
-              You already use that nickname for other pokemon &gt;:(
+      if (addSuccess) {
+        return (
+          <>
+            <Text sm mb bold>
+              {toTitleCase(pokemonNickname)} is now added to your pokemon list!
+              :D
             </Text>
-          )}
-          <ButtonContainer>
-            <Button type="submit">OK</Button>
-            <Button red onClick={toggleCatchModal}>
-              Release
+            <Button type="button" onClick={toggleCatchModal}>
+              OK
             </Button>
-          </ButtonContainer>
-        </Form>
-      );
+          </>
+        );
+      } else {
+        return (
+          <Form onSubmit={addMyPokemon}>
+            <Text sm bold>
+              Congratulation! You did it! <br /> Give it a nickname
+            </Text>
+            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            <input
+              required
+              type="text"
+              placeholder="Name your pokemon :D"
+              onChange={(e) => setPokemonNickname(e.target.value)}
+            />
+            {duplicateNickname && (
+              <Text bold red>
+                You already use that nickname for other pokemon &gt;:(
+              </Text>
+            )}
+            <ButtonContainer>
+              <Button type="submit">OK</Button>
+              <Button red onClick={toggleCatchModal}>
+                Release
+              </Button>
+            </ButtonContainer>
+          </Form>
+        );
+      }
     } else {
       return (
         <>
-          <Text>
+          <Text sm mb bold>
             Failed :( <br /> Try again next time.
           </Text>
           <Button type="button" onClick={toggleCatchModal}>
@@ -152,8 +174,8 @@ const CatchPokemon = ({ pokemon }) => {
   };
 
   return (
-    <Overlay display={catchModal}>
-      <Modal>{loading ? loadingContent() : resultContent()}</Modal>
+    <Overlay display={catchModal ? true : undefined}>
+      <Modal>{!loading ? resultContent() : loadingContent()}</Modal>
     </Overlay>
   );
 };

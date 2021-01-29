@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
-
 import { useQuery } from "@apollo/client";
 import { GET_POKEMONS } from "../../../GraphQL/Queries";
-
 import styled from "@emotion/styled";
-import { mq } from "../../../Theme";
 
 import PokemonCard from "./PokemonCard";
 import LoadingPage from "../../Components/LoadingPage";
+import { Button } from "../../Components/Components";
 
 // Styled Components
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+
+  button {
+    margin: 0 0.5rem;
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 2rem;
 `;
 
 const PokemonList = () => {
@@ -47,14 +56,11 @@ const PokemonList = () => {
 
   return (
     <>
-      {loading && <LoadingPage />}
-      {!loading && (
+      {loading ? (
+        <LoadingPage />
+      ) : (
         <>
-          <Container
-            css={mq({
-              color: ["blue", "gray", "hotpink"],
-            })}
-          >
+          <Container>
             {pokemons.map((pokemon) => (
               <PokemonCard
                 key={pokemon.id}
@@ -63,14 +69,16 @@ const PokemonList = () => {
               />
             ))}
           </Container>
-          {activePage !== 1 && (
-            <button type="button" onClick={prevPage}>
-              Prev
-            </button>
-          )}
-          <button type="button" onClick={nextPage}>
-            Next
-          </button>
+          <ButtonContainer>
+            {activePage !== 1 && (
+              <Button type="button" onClick={prevPage}>
+                Prev
+              </Button>
+            )}
+            <Button type="button" onClick={nextPage}>
+              Next
+            </Button>
+          </ButtonContainer>
         </>
       )}
     </>

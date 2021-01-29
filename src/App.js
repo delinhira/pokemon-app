@@ -14,6 +14,7 @@ import { theme } from "./Theme";
 
 import MainLayout from "./Layout/Pages/MainLayout";
 import NavBar from "./Layout/Components/NavBar";
+import Footer from "./Layout/Components/Footer";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -39,6 +40,7 @@ const App = () => {
       <ApolloProvider client={client}>
         <NavBar />
         <MainLayout />
+        <Footer />
       </ApolloProvider>
     </ThemeProvider>
   );
