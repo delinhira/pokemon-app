@@ -22,9 +22,81 @@ const StatItem = styled.div`
   width: 100%;
 `;
 
-const PokemonType = styled.div``;
+const TypeContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 1rem;
+  .bug {
+    background-color: ${(props) => props.theme.colors.type.bug};
+  }
+  .dark {
+    background-color: ${(props) => props.theme.colors.type.dark};
+  }
+  .dragon {
+    background-color: ${(props) => props.theme.colors.type.dragon};
+  }
+  .electric {
+    background-color: ${(props) => props.theme.colors.type.electric};
+  }
+  .fairy {
+    background-color: ${(props) => props.theme.colors.type.fairy};
+  }
+  .fighting {
+    background-color: ${(props) => props.theme.colors.type.fighting};
+  }
+  .flying {
+    background-color: ${(props) => props.theme.colors.type.flying};
+  }
+  .fire {
+    background-color: ${(props) => props.theme.colors.type.fire};
+  }
+  .ghost {
+    background-color: ${(props) => props.theme.colors.type.ghost};
+  }
+  .grass {
+    background-color: ${(props) => props.theme.colors.type.grass};
+  }
+  .ground {
+    background-color: ${(props) => props.theme.colors.type.ground};
+  }
+  .ice {
+    background-color: ${(props) => props.theme.colors.type.ice};
+  }
+  .normal {
+    background-color: ${(props) => props.theme.colors.type.normal};
+  }
+  .poison {
+    background-color: ${(props) => props.theme.colors.type.poison};
+  }
+  .psychic {
+    background-color: ${(props) => props.theme.colors.type.psychic};
+  }
+  .rock {
+    background-color: ${(props) => props.theme.colors.type.rock};
+  }
+  .shadow {
+    background-color: ${(props) => props.theme.colors.type.shadow};
+  }
+  .steel {
+    background-color: ${(props) => props.theme.colors.type.steel};
+  }
+  .unknown {
+    background-color: ${(props) => props.theme.colors.type.unknown};
+  }
+  .water {
+    background-color: ${(props) => props.theme.colors.type.water};
+  }
+`;
 
-const PokemonAbout = ({ abilities, stats, type }) => {
+const TypeItem = styled.p`
+  color: white;
+  font-weight: 600;
+  margin: 0;
+  padding: 0.25rem 1rem;
+  border-radius: 5px;
+`;
+
+const PokemonAbout = ({ abilities, stats, types }) => {
   const abilitiesRender = () => {
     return (
       <>
@@ -63,8 +135,21 @@ const PokemonAbout = ({ abilities, stats, type }) => {
     );
   };
 
+  const typesRender = () => {
+    return (
+      <TypeContainer>
+        {types.map((type, index) => (
+          <TypeItem className={type.type.name} key={index}>
+            {toTitleCase(type.type.name)}
+          </TypeItem>
+        ))}
+      </TypeContainer>
+    );
+  };
+
   return (
     <>
+      {typesRender()}
       {abilitiesRender()}
       {statsRender()}
     </>

@@ -11,6 +11,7 @@ const Container = styled.div`
   border: 2px solid ${(props) => props.theme.colors.yellow};
   border-radius: 10px;
   padding: 1rem;
+  padding-bottom: 1.5rem;
 
   background-color: #f9f9f9;
   opacity: 1;
@@ -91,7 +92,7 @@ const DetailTabs = ({ pokemon }) => {
             <PokemonAbout
               abilities={pokemon.abilities}
               stats={pokemon.stats}
-              type={pokemon.types}
+              types={pokemon.types}
             />
           </>
         )}

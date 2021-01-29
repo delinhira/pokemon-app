@@ -30,30 +30,30 @@ const PokemonOwned = ({ id }) => {
     setMyPokemon(JSON.parse(localStorage.getItem("myPokemonList")));
   }, []);
 
+  const noPokemonRender = () => {
+    return <Text mb>You don't own any of this pokemon.</Text>;
+  };
+
   return (
     <Container>
-      {!myPokemon ? (
-        <Text>
-          You don't own any.
-          <br />
-          Try to catch the pokemon.
-        </Text>
-      ) : (
-        myPokemon.map((pokemon) =>
-          pokemon.id === id ? (
-            <Items>
-              <Text bold>{toTitleCase(pokemon.nickname)}</Text>
-              <Button
-                red
-                type="button"
-                onClick={() => toggleReleaseModal(pokemon.nickname)}
-              >
-                Release
-              </Button>
-            </Items>
-          ) : null
-        )
-      )}
+      {!myPokemon || myPokemon.length === 0
+        ? noPokemonRender()
+        : myPokemon.map((pokemon) =>
+            pokemon.id === id ? (
+              <Items>
+                <Text bold>{toTitleCase(pokemon.nickname)}</Text>
+                <Button
+                  red
+                  type="button"
+                  onClick={() => toggleReleaseModal(pokemon.nickname)}
+                >
+                  Release
+                </Button>
+              </Items>
+            ) : (
+              noPokemonRender()
+            )
+          )}
     </Container>
   );
 };
