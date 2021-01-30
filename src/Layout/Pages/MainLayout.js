@@ -6,6 +6,7 @@ import styled from "@emotion/styled";
 import background from "../../Images/background.jpg";
 import MyPokemonList from "./PokemonList/MyPokemonList";
 import PokemonRouter from "./PokemonRouter";
+import PokemonList from "./PokemonList/PokemonList";
 
 // Styled Components
 const Background = styled.div`
@@ -40,7 +41,9 @@ const MainPage = () => {
               <PokemonRouter />
             </Route>
             <Route path="/404">Error 404: Not Found</Route>
-            <Redirect exact from="/" to="/pokemon" />
+            <Route exact path="/">
+              <PokemonList />
+            </Route>
             <Redirect from="*" to="/404" />
           </Switch>
         </ModalProvider>
