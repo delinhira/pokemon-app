@@ -8,7 +8,7 @@ import pokeball from "../../../Images/pokeball.gif";
 const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 `;
 
 const ReleasePokemon = () => {

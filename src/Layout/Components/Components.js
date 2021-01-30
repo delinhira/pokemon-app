@@ -1,22 +1,21 @@
 import styled from "@emotion/styled";
 
 export const Button = styled.button`
-  border: 1px solid
+  border: 2px solid
     ${(props) => (props.red ? props.theme.colors.red : props.theme.colors.blue)};
   background-color: ${(props) =>
     props.red ? props.theme.colors.red : props.theme.colors.blue};
   border-radius: 5px;
   color: white;
   padding: 0.5rem 1rem;
-  font-weight: 600;
+  font-weight: 500;
+  margin: 0.25rem;
 
   &:hover {
-    border: 1px solid
-      ${(props) =>
-        props.red ? props.theme.colors.red : props.theme.colors.blue};
     color: ${(props) =>
       props.red ? props.theme.colors.red : props.theme.colors.blue};
-    background-color: white;
+    background-color: ${(props) =>
+      props.red ? props.theme.colors.fadeRed : props.theme.colors.fadeBlue};
   }
 `;
 
@@ -38,16 +37,6 @@ export const Text = styled.p`
     props.lg ? "3rem" : props.md ? "1.75rem" : props.sm ? "1.25rem" : "1rem"};
   text-shadow: ${(props) =>
     props.shadow ? "0 0 2px rgba(255, 255, 255, 0.8)" : ""};
-
-  /* @media (min-width: ${(props) => props.theme.breakpoints.small}) {
-    font-size: ${(props) =>
-    props.lg ? "3rem" : props.md ? "1.75rem" : props.sm ? "1.25rem" : "1rem"};
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.medium}) {
-    font-size: ${(props) =>
-    props.lg ? "4rem" : props.md ? "24px" : props.sm ? "18px" : "14px"};
-  } */
 `;
 
 export const Modal = styled.div`
@@ -58,7 +47,7 @@ export const Modal = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  width: 100%;
+  max-width: 500px;
   img {
     width: 50%;
   }

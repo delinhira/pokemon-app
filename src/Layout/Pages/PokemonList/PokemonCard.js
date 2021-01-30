@@ -64,13 +64,13 @@ const PokemonCard = ({ name, img, nickname }) => {
     <Container css={mqContainer}>
       <Link to={`/pokemon/${name}`}>
         <Title>
-          <Text md bold>
+          <Text sm bold>
             {toTitleCase(name)}
           </Text>
         </Title>
         <Image src={img} alt={name} />
         {nickname && (
-          <Text mb md bold>
+          <Text mb bold>
             &bull; {toTitleCase(nickname)} &bull;
           </Text>
         )}

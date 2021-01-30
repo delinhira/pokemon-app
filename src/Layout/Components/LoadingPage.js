@@ -13,7 +13,7 @@ const Container = styled.div`
   align-items: center;
 
   img {
-    width: 50%;
+    max-width: 200px;
   }
 `;
 

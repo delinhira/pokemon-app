@@ -3,13 +3,15 @@ import facepaint from "facepaint";
 export const theme = {
   colors: {
     blue: "#306BB4",
+    fadeBlue: "#97B5D9",
     gray: "",
     darkGray: "#161616",
     lightGray: "#E3E3E0",
     red: "#EF1C24",
+    fadeRed: "#FABABD",
     darkRed: "#DC4F4F",
     yellow: "#FFCB08",
-    white: "#E2E3DF",
+    white: "#F9F9F9",
     type: {
       bug: "#99A717",
       dark: "#543E32",

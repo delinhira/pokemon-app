@@ -12,9 +12,10 @@ const Background = styled.div`
   min-height: calc(100vh - 60px);
   background-image: url(${background});
   background-attachment: fixed;
+  background-position: center;
   background-size: cover;
   padding: 1rem;
-  padding-top: 6rem;
+  padding-top: 5rem;
   box-sizing: border-box;
 `;
 

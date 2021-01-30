@@ -37,7 +37,7 @@ const Option = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   padding: 0.5rem 1rem;
-  margin: 0 0.25rem;
+  margin: 0.25rem;
   cursor: pointer;
 
   &:hover {
@@ -51,8 +51,9 @@ const Option = styled.div`
   }
 `;
 
-const Options = styled.div`
+const OptionsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 2rem;
   padding: 1rem 0;
@@ -63,7 +64,7 @@ const DetailTabs = ({ pokemon }) => {
 
   return (
     <>
-      <Options>
+      <OptionsContainer>
         <Option
           className={activeTab === "about" ? "active" : ""}
           onClick={() => setActiveTab("about")}
@@ -82,7 +83,7 @@ const DetailTabs = ({ pokemon }) => {
         >
           Owned
         </Option>
-      </Options>
+      </OptionsContainer>
       <Container>
         {activeTab === "about" && (
           <>

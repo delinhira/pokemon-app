@@ -1,17 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
+/** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { toTitleCase } from "../../../helper";
 import { Button, Text } from "../../Components/Components";
 import { ModalContext } from "../../../Context/ModalContext";
-import { mq } from "../../../Theme";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
 const Items = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   background-color: white;
   border: 1px solid lightgray;
@@ -23,10 +26,6 @@ const Items = styled.div`
     margin: auto 0;
   }
 `;
-
-const mqContainer = mq({
-  width: ["95%", "45%", "22%"],
-});
 
 const PokemonOwned = ({ id }) => {
   const [myPokemon, setMyPokemon] = useState([]);
@@ -45,7 +44,7 @@ const PokemonOwned = ({ id }) => {
   };
 
   return (
-    <Container css={mqContainer}>
+    <Container>
       {!myPokemon || myPokemon.length === 0
         ? noPokemonRender()
         : myPokemon.map((pokemon, index) => (

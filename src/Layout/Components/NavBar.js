@@ -24,7 +24,7 @@ const Container = styled.div`
 `;
 
 const MenuWrap = styled.div`
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -35,11 +35,11 @@ const NavLinkContainer = styled.div`
   a {
     text-decoration: none;
     font-weight: 600;
-    color: ${(props) => props.theme.colors.lightGray};
+    color: ${(props) => props.theme.colors.white};
     margin: 0 1rem;
   }
   .active {
-    color: ${(props) => props.theme.colors.white};
+    color: white;
     border-bottom: 2px solid ${(props) => props.theme.colors.yellow};
   }
 `;

@@ -19,6 +19,7 @@ import { mq } from "../../../Theme";
 
 // Styled Components
 const BackIcon = styled.div`
+  cursor: pointer;
   color: red;
   display: flex;
   align-items: center;
@@ -35,6 +36,8 @@ const Container = styled.div`
 
 const Image = styled.img`
   width: 100%;
+  margin: 0 auto;
+  display: block;
 `;
 
 const Pokeball = styled.div`
@@ -51,7 +54,11 @@ const Pokeball = styled.div`
 
 const mqPokeball = mq({
   width: ["100%", "70%", "50%"],
-  marginTop: ["0", "-5rem", "-10rem"],
+  marginTop: ["0", "-4rem", "-7rem"],
+});
+
+const mqPokemon = mq({
+  width: ["100%", "80%", "60%"],
 });
 
 const PokemonDetail = ({ myPokemon }) => {
@@ -95,7 +102,11 @@ const PokemonDetail = ({ myPokemon }) => {
   const imageRender = () => {
     return (
       <>
-        <Image src={pokemon.sprites.front_default} alt={pokemon.name} />
+        <Image
+          src={pokemon.sprites.front_default}
+          alt={pokemon.name}
+          css={mqPokemon}
+        />
         <Pokeball css={mqPokeball}>
           <img
             className="pokeball"
