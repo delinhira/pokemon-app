@@ -76,10 +76,6 @@ const ReleasePokemon = () => {
     }, 1000);
   };
 
-  const closeHandle = () => {
-    toggleReleaseModal("");
-  };
-
   const loadingRender = () => {
     return (
       <>
@@ -98,7 +94,7 @@ const ReleasePokemon = () => {
           <Text sm mb bold>
             {toTitleCase(pokemonNickname)} has been released :D
           </Text>
-          <Button type="button" onClick={closeHandle}>
+          <Button type="button" onClick={() => toggleReleaseModal("")}>
             OK
           </Button>
         </>
