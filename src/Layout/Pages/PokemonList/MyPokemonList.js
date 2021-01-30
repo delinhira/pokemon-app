@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "@emotion/styled";
+import { ModalContext } from "../../../Context/ModalContext";
+import { Text } from "../../Components/Components";
 import LoadingPage from "../../Components/LoadingPage";
 import PokemonCard from "./PokemonCard";
-import { Text } from "../../Components/Components";
 import ReleasePokemon from "../../Components/Modals/ReleasePokemon";
 
 const CardsContainer = styled.div`
@@ -10,20 +11,22 @@ const CardsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 `;
+
 const Container = styled.div`
-  padding: 2rem;
   min-height: 100;
+  padding: 2rem;
 `;
 
 const MyPokemonList = () => {
   const [loading, setLoading] = useState(true);
   const [myPokemon, setMyPokemon] = useState([]);
+  const { releaseModal } = useContext(ModalContext);
 
   useEffect(() => {
     setLoading(true);
     setMyPokemon(JSON.parse(localStorage.getItem("myPokemonList")));
     setLoading(false);
-  }, []);
+  }, [releaseModal]);
 
   return (
     <>
@@ -40,9 +43,9 @@ const MyPokemonList = () => {
             {myPokemon.length > 1 ? "pokemons" : "pokemon"}
           </Text>
           <CardsContainer>
-            {myPokemon.map((pokemon) => (
+            {myPokemon.map((pokemon, index) => (
               <PokemonCard
-                key={pokemon.id}
+                key={index}
                 name={pokemon.name}
                 img={pokemon.sprites}
                 nickname={pokemon.nickname}

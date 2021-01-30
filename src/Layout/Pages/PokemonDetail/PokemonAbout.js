@@ -13,28 +13,27 @@ const StatBox = styled.div`
 `;
 
 const StatItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  padding: 0.5rem 1rem;
-  margin: 0.25rem;
   background-color: white;
   border: 1px solid lightgray;
   border-radius: 5px;
-  /* width: 100%; */
+  justify-content: space-between;
+  margin: 0.25rem;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+  display: flex;
   p {
     text-align: start;
   }
 `;
-// Media Query
+// Media Query StatItem
 const mqStatItem = mq({
   width: ["95%", "47%", "32%"],
 });
 
 const TypeContainer = styled.div`
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 0 auto;
   margin-bottom: 1rem;
   .bug {
@@ -100,11 +99,11 @@ const TypeContainer = styled.div`
 `;
 
 const TypeItem = styled.p`
+  border-radius: 5px;
   color: white;
   font-weight: 600;
   margin: 0.25rem;
   padding: 0.25rem 1rem;
-  border-radius: 5px;
 `;
 
 const PokemonAbout = ({ abilities, stats, types }) => {

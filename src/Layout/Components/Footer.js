@@ -3,11 +3,11 @@ import styled from "@emotion/styled";
 import { Text } from "./Components";
 
 const Container = styled.div`
-  width: 100vw;
   box-sizing: border-box;
   padding: 1rem;
   text-align: center;
-
+  width: 100vw;
+  // Background
   background-color: #666666;
   opacity: 1;
   background-image: radial-gradient(

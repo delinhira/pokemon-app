@@ -1,17 +1,16 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 import pokeball from "../../Images/pokeball.gif";
 
 const Container = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100vh;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
-
+  left: 0;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  width: 100%;
   img {
     max-width: 200px;
   }

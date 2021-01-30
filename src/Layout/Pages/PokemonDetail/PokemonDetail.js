@@ -1,28 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { ModalContext } from "../../../Context/ModalContext";
-
+// GraphQL
 import { useQuery } from "@apollo/client";
 import { GET_POKEMON_DETAIL } from "../../../GraphQL/Queries";
-
+// Emotion
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-
+// Components
+import { mq } from "../../../Theme";
 import { toTitleCase } from "../../../helper";
+import { Text } from "../../Components/Components";
 import CatchPokemon from "../../Components/Modals/CatchPokemon";
 import DetailTabs from "./DetailTabs";
 import LoadingPage from "../../Components/LoadingPage";
 import pokeball from "../../../Images/pokeball.png";
-import { Text } from "../../Components/Components";
 import ReleasePokemon from "../../Components/Modals/ReleasePokemon";
-import { mq } from "../../../Theme";
 
 // Styled Components
 const BackIcon = styled.div`
   cursor: pointer;
+  align-items: center;
   color: red;
   display: flex;
-  align-items: center;
   p {
     margin-left: 0.5rem;
   }
@@ -35,23 +35,24 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
-  margin: 0 auto;
   display: block;
+  margin: 0 auto;
+  width: 100%;
 `;
 
 const Pokeball = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 0 auto;
   img {
-    width: 30%;
-    margin: 0 auto;
     cursor: pointer;
+    margin: 0 auto;
+    width: 30%;
   }
 `;
 
+// Media Queries
 const mqPokeball = mq({
   width: ["100%", "70%", "50%"],
   marginTop: ["0", "-4rem", "-7rem"],
@@ -84,8 +85,6 @@ const PokemonDetail = ({ myPokemon }) => {
     else {
       setPokemon(data.pokemon);
     }
-
-    console.log(data);
   }, [loading, error, data]);
 
   const BackButtonRender = () => {

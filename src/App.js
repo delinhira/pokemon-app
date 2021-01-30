@@ -1,5 +1,5 @@
 import React from "react";
-
+// Apollo GraphQL
 import {
   ApolloClient,
   ApolloProvider,
@@ -8,13 +8,13 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-
+// Emotion
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./Theme";
-
+// Components
+import Footer from "./Layout/Components/Footer";
 import MainLayout from "./Layout/Pages/MainLayout";
 import NavBar from "./Layout/Components/NavBar";
-import Footer from "./Layout/Components/Footer";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {

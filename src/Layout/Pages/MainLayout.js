@@ -1,30 +1,30 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import styled from "@emotion/styled";
-
-import PokemonRouter from "./PokemonRouter";
-import MyPokemonList from "./PokemonList/MyPokemonList";
 import { ModalProvider } from "../../Context/ModalContext";
+import styled from "@emotion/styled";
+// Components
 import background from "../../Images/background.jpg";
+import MyPokemonList from "./PokemonList/MyPokemonList";
+import PokemonRouter from "./PokemonRouter";
 
 // Styled Components
 const Background = styled.div`
-  min-height: calc(100vh - 60px);
-  background-image: url(${background});
   background-attachment: fixed;
+  background-image: url(${background});
   background-position: center;
   background-size: cover;
+  box-sizing: border-box;
+  min-height: calc(100vh - 60px);
   padding: 1rem;
   padding-top: 5rem;
-  box-sizing: border-box;
 `;
 
 const Container = styled.div`
   background-color: rgba(255, 255, 255, 0.7);
-  box-sizing: border-box;
-  max-width: 1200px;
-  margin: 0 auto;
   border-radius: 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 1200px;
 `;
 
 const MainPage = () => {

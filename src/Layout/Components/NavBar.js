@@ -5,12 +5,12 @@ import logo from "../../Images/logo.png";
 
 // Styled Components
 const Container = styled.div`
+  left: 0;
+  padding: 0.5rem 1rem;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100vw;
-  padding: 0.5rem 1rem;
-  /* z-index: 1; */
+  // Background
   box-sizing: border-box;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   opacity: 1;
@@ -24,23 +24,23 @@ const Container = styled.div`
 `;
 
 const MenuWrap = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin: 0 auto;
+  max-width: 1200px;
 `;
 
 const NavLinkContainer = styled.div`
   a {
-    text-decoration: none;
-    font-weight: 600;
     color: ${(props) => props.theme.colors.white};
+    font-weight: 600;
     margin: 0 1rem;
+    text-decoration: none;
   }
   .active {
-    color: white;
     border-bottom: 2px solid ${(props) => props.theme.colors.yellow};
+    color: white;
   }
 `;
 

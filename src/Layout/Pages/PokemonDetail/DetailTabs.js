@@ -7,12 +7,13 @@ import PokemonOwned from "./PokemonOwned";
 
 // Styled Components
 const Container = styled.div`
-  box-sizing: border-box;
   border: 2px solid ${(props) => props.theme.colors.yellow};
   border-radius: 10px;
+  box-sizing: border-box;
   padding: 1rem;
   padding-bottom: 1.5rem;
 
+  // Background
   background-color: #f9f9f9;
   opacity: 1;
   background-image: linear-gradient(135deg, #efefef 25%, transparent 25%),
@@ -25,29 +26,28 @@ const Container = styled.div`
 
   .title {
     background-color: ${(props) => props.theme.colors.yellow};
-    padding: 0.25rem 0;
     margin-bottom: 1rem;
+    padding: 0.25rem 0;
   }
 `;
 
 const Option = styled.div`
-  box-sizing: border-box;
-  font-weight: 600;
-  color: ${(props) => props.theme.colors.white};
+  cursor: pointer;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  color: ${(props) => props.theme.colors.white};
+  font-weight: 600;
   margin: 0.25rem;
-  cursor: pointer;
+  padding: 0.5rem 1rem;
 
   &:hover {
-    color: white;
     background-color: ${(props) => props.theme.colors.yellow};
+    color: white;
   }
-
   &.active {
-    color: white;
     background-color: ${(props) => props.theme.colors.yellow};
+    color: white;
   }
 `;
 

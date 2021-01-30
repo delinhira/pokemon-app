@@ -1,9 +1,9 @@
 import React from "react";
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
+import { mq } from "../../../Theme";
 import { toTitleCase } from "../../../helper";
 import { Text } from "../../Components/Components";
-import { mq } from "../../../Theme";
 
 const MovesContainer = styled.div`
   display: flex;

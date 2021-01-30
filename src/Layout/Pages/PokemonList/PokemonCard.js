@@ -3,20 +3,21 @@ import { Link } from "react-router-dom";
 import { ModalContext } from "../../../Context/ModalContext";
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
+// Components
 import { mq } from "../../../Theme";
-
 import { toTitleCase } from "../../../helper";
 import { Button, Text } from "../../Components/Components";
 
 // Styled Components
 const Container = styled.div`
-  box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.5);
-  margin: 0.5rem;
-  padding: 1rem;
   border: 2px solid ${(props) => props.theme.colors.yellow};
   border-radius: 10px;
+  box-sizing: border-box;
+  margin: 0.5rem;
+  padding: 1rem;
 
+  // Background
   background-color: #f9f9f9;
   opacity: 1;
   background-image: linear-gradient(135deg, #efefef 25%, transparent 25%),
@@ -30,32 +31,30 @@ const Container = styled.div`
   &:hover {
     box-shadow: 1px 4px 0.5rem rgba(0, 0, 0, 0.1);
   }
-
   a {
     text-decoration: none;
   }
-
   button {
     display: block;
     margin: 0 auto;
   }
 `;
+// Media Query
+const mqContainer = mq({
+  width: ["95%", "45%", "22%"],
+});
 
 const Image = styled.img`
   width: 100%;
 `;
 
 const Title = styled.div`
-  margin-top: 0.5rem;
   background-color: ${(props) => props.theme.colors.yellow};
-  color: ${(props) => props.theme.colors.blue};
-  padding: 0.5rem;
   border-radius: 50px;
+  color: ${(props) => props.theme.colors.blue};
+  margin-top: 0.5rem;
+  padding: 0.5rem;
 `;
-
-const mqContainer = mq({
-  width: ["95%", "45%", "22%"],
-});
 
 const PokemonCard = ({ name, img, nickname }) => {
   const { toggleReleaseModal } = useContext(ModalContext);

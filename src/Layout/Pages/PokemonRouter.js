@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-
 import PokemonList from "./PokemonList/PokemonList";
 import PokemonDetail from "./PokemonDetail/PokemonDetail";
 

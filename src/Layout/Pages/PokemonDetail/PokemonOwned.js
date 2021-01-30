@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import { ModalContext } from "../../../Context/ModalContext";
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { toTitleCase } from "../../../helper";
 import { Button, Text } from "../../Components/Components";
-import { ModalContext } from "../../../Context/ModalContext";
 
 const Container = styled.div`
   display: flex;
@@ -13,15 +13,14 @@ const Container = styled.div`
 `;
 
 const Items = styled.div`
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: white;
-  border: 1px solid lightgray;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
   margin: 0.25rem 0;
-
+  padding: 0.5rem 1rem;
   p {
     margin: auto 0;
   }
@@ -29,7 +28,9 @@ const Items = styled.div`
 
 const PokemonOwned = ({ id }) => {
   const [myPokemon, setMyPokemon] = useState([]);
-  const { toggleReleaseModal } = useContext(ModalContext);
+  const { catchModal, releaseModal, toggleReleaseModal } = useContext(
+    ModalContext
+  );
 
   useEffect(() => {
     setMyPokemon(
@@ -37,7 +38,7 @@ const PokemonOwned = ({ id }) => {
         (thisPokemon) => thisPokemon.id === id
       )
     );
-  }, [id]);
+  }, [id, catchModal, releaseModal]);
 
   const noPokemonRender = () => {
     return <Text mb>You don't own any of this pokemon.</Text>;

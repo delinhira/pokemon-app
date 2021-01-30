@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_POKEMONS } from "../../../GraphQL/Queries";
 import styled from "@emotion/styled";
-
+// Components
+import { Button, Text } from "../../Components/Components";
 import PokemonCard from "./PokemonCard";
 import LoadingPage from "../../Components/LoadingPage";
-import { Button, Text } from "../../Components/Components";
 
 // Styled Components
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   padding-bottom: 2rem;
-
   button {
     margin: 0 0.5rem;
   }
@@ -49,8 +48,6 @@ const PokemonList = () => {
     setNextOffset(data.pokemons.nextOffset);
     setPrevOffset(data.pokemons.prevOffset);
     setMyPokemon(JSON.parse(localStorage.getItem("myPokemonLis")));
-
-    console.log(data);
   }, [loading, error, data]);
 
   const nextPage = () => setActivePage(nextOffset);

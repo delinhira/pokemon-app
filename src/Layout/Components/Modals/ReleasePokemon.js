@@ -1,15 +1,49 @@
 import React, { useContext, useEffect, useState } from "react";
+/** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { ModalContext } from "../../../Context/ModalContext";
 import { toTitleCase } from "../../../helper";
-import { Button, Modal, Overlay, Text } from "../Components";
+import { Button, Text } from "../Components";
 import pokeball from "../../../Images/pokeball.gif";
+import { mq } from "../../../Theme";
 
 const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
 `;
+
+const Modal = styled.div`
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  img {
+    width: 50%;
+  }
+`;
+
+const Overlay = styled.div`
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  display: ${(props) => (props.display ? "flex" : "none")};
+  justify-content: center;
+  left: 0;
+  min-height: 100vh;
+  padding: 0 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+`;
+
+const mqModal = mq({
+  width: ["100%", "60%", "30%"],
+});
 
 const ReleasePokemon = () => {
   const [loading, setLoading] = useState(false);
@@ -39,7 +73,11 @@ const ReleasePokemon = () => {
     setTimeout(() => {
       setLoading(false);
       setReleased(true);
-    }, 3000);
+    }, 1000);
+  };
+
+  const closeHandle = () => {
+    toggleReleaseModal("");
   };
 
   const loadingRender = () => {
@@ -60,7 +98,7 @@ const ReleasePokemon = () => {
           <Text sm mb bold>
             {toTitleCase(pokemonNickname)} has been released :D
           </Text>
-          <Button type="button" onClick={() => toggleReleaseModal("")}>
+          <Button type="button" onClick={closeHandle}>
             OK
           </Button>
         </>
@@ -86,7 +124,7 @@ const ReleasePokemon = () => {
 
   return (
     <Overlay display={releaseModal ? "true" : undefined}>
-      <Modal>
+      <Modal css={mqModal}>
         {!releaseModal
           ? null
           : loading

@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
+/** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { ModalContext } from "../../../Context/ModalContext";
 import { toTitleCase } from "../../../helper";
-import { Button, Modal, Overlay, Text } from "../Components";
+import { Button, Text } from "../Components";
 import pokeball from "../../../Images/pokeball.gif";
+import { mq } from "../../../Theme";
 
 const ButtonContainer = styled.div`
   width: 100%;
@@ -13,9 +15,9 @@ const ButtonContainer = styled.div`
 `;
 
 const Form = styled.form`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   img {
     width: 100%;
   }
@@ -28,12 +30,44 @@ const Form = styled.form`
   }
 `;
 
+const Modal = styled.div`
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  img {
+    width: 100%;
+  }
+`;
+
+const Overlay = styled.div`
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  display: ${(props) => (props.display ? "flex" : "none")};
+  justify-content: center;
+  left: 0;
+  min-height: 100vh;
+  padding: 0 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+`;
+
+const mqModal = mq({
+  width: ["100%", "60%", "30%"],
+});
+
 const CatchPokemon = ({ pokemon }) => {
-  const [pokemonNickname, setPokemonNickname] = useState();
-  const [loading, setLoading] = useState(true);
-  const [catched, setCatched] = useState(null);
   const [addSuccess, setAddsuccess] = useState(false);
+  const [catched, setCatched] = useState(null);
   const [duplicateNickname, setDuplicateNickname] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [pokemonNickname, setPokemonNickname] = useState();
   const { catchModal, toggleCatchModal } = useContext(ModalContext);
 
   useEffect(() => {
@@ -47,7 +81,7 @@ const CatchPokemon = ({ pokemon }) => {
 
       setTimeout(() => {
         setLoading(false);
-      }, 3000);
+      }, 1000);
     } else {
       document.body.style.overflowY = "auto";
     }
@@ -150,7 +184,7 @@ const CatchPokemon = ({ pokemon }) => {
 
   return (
     <Overlay display={catchModal ? "true" : undefined}>
-      <Modal>
+      <Modal css={mqModal}>
         {!catchModal ? null : loading ? loadingRender() : resultContentRender()}
       </Modal>
     </Overlay>
