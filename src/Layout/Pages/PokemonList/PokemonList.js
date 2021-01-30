@@ -32,7 +32,6 @@ const PokemonList = () => {
   const [prevOffset, setPrevOffset] = useState(0);
   const [myPokemon, setMyPokemon] = useState([]);
   const history = useHistory();
-  console.log(history);
 
   const gqlVariables = {
     limit: 20,

@@ -16,16 +16,15 @@ import DetailTabs from "./DetailTabs";
 import LoadingPage from "../../Components/LoadingPage";
 import pokeball from "../../../Images/pokeball.webp";
 import ReleasePokemon from "../../Components/Modals/ReleasePokemon";
+import backArrow from "../../../Images/backArrow.svg";
 
 // Styled Components
-const BackIcon = styled.div`
+const BackIcon = styled.img`
   cursor: pointer;
-  align-items: center;
-  color: red;
-  display: flex;
-  p {
-    margin-left: 0.5rem;
-  }
+  background-color: ${(props) => props.theme.colors.yellow};
+  border-radius: 50px;
+  display: inline-flex;
+  padding: 0.2rem;
 `;
 
 const Container = styled.div`
@@ -87,17 +86,6 @@ const PokemonDetail = ({ myPokemon }) => {
     }
   }, [loading, error, data]);
 
-  const BackButtonRender = () => {
-    return (
-      <>
-        <BackIcon onClick={() => history.goBack()}>
-          <i className="fas fa-chevron-left fa-2x" />
-          <Text red>Back</Text>
-        </BackIcon>
-      </>
-    );
-  };
-
   const imageRender = () => {
     return (
       <>
@@ -127,12 +115,16 @@ const PokemonDetail = ({ myPokemon }) => {
         <LoadingPage />
       ) : (
         <Container>
+          <BackIcon
+            src={backArrow}
+            alt="back"
+            onClick={() => history.goBack()}
+          />
           {!loading && !dataExist ? (
             <Text>Data doesn't exist.</Text>
           ) : (
             pokemon && (
               <>
-                {BackButtonRender()}
                 <Text lg bold shadow mt>
                   {toTitleCase(pokemon.name)}
                 </Text>
