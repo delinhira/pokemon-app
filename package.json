@@ -2,7 +2,7 @@
   "name": "pokemon-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://delinhira.github.io/pokemon-app",
+  "homepage": "http://delinhira.github.io/pokemon",
   "dependencies": {
     "@apollo/client": "^3.3.7",
     "@emotion/react": "^11.1.4",
