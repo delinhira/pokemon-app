@@ -13,7 +13,6 @@ const CardsContainer = styled.div`
 `;
 
 const Container = styled.div`
-  min-height: 100;
   padding: 2rem;
 `;
 
