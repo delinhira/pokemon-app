@@ -1,18 +1,15 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-
 import styled from "@emotion/styled";
 
 import PokemonRouter from "./PokemonRouter";
 import MyPokemonList from "./PokemonList/MyPokemonList";
 import { ModalProvider } from "../../Context/ModalContext";
-// import CatchPokemon from "../Components/CatchPokemon";
 import background from "../../Images/background.jpg";
-import ReleasePokemon from "../Components/Modals/ReleasePokemon";
 
 // Styled Components
 const Background = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   background-image: url(${background});
   background-attachment: fixed;
   background-size: cover;
@@ -22,7 +19,7 @@ const Background = styled.div`
 `;
 
 const Container = styled.div`
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   box-sizing: border-box;
   max-width: 1200px;
   margin: 0 auto;
@@ -45,7 +42,6 @@ const MainPage = () => {
             <Redirect exact from="/" to="/pokemon" />
             <Redirect from="*" to="/404" />
           </Switch>
-          {/* <ReleasePokemon /> */}
         </ModalProvider>
       </Container>
     </Background>

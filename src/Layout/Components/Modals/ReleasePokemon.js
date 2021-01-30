@@ -19,8 +19,13 @@ const ReleasePokemon = () => {
   );
 
   useEffect(() => {
-    setReleased(false);
-  }, []);
+    if (releaseModal) {
+      document.body.style.overflowY = "hidden";
+      setReleased(false);
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+  }, [releaseModal]);
 
   const releaseHandle = () => {
     setLoading(true);
@@ -80,7 +85,7 @@ const ReleasePokemon = () => {
   };
 
   return (
-    <Overlay display={releaseModal ? true : undefined}>
+    <Overlay display={releaseModal ? "true" : undefined}>
       <Modal>
         {!releaseModal
           ? null

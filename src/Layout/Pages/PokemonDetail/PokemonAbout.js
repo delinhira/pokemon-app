@@ -15,7 +15,7 @@ const StatItem = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   padding: 0.5rem 1rem;
-  margin: 0.25rem 1rem;
+  margin: 0.25rem 0;
   background-color: white;
   border: 1px solid lightgray;
   border-radius: 5px;
@@ -103,8 +103,8 @@ const PokemonAbout = ({ abilities, stats, types }) => {
         <Text sm bold white className="title">
           Abilities
         </Text>
-        {abilities.map((ability) => (
-          <Text bold key={ability}>
+        {abilities.map((ability, index) => (
+          <Text bold key={index}>
             {toTitleCase(ability.ability.name)}
           </Text>
         ))}
@@ -119,9 +119,9 @@ const PokemonAbout = ({ abilities, stats, types }) => {
           Stats
         </Text>
         <StatBox>
-          {stats.map((stat) => (
+          {stats.map((stat, index) => (
             <StatItem
-              key={stat.stat.name}
+              key={index}
               css={mq({
                 width: ["95%", "40%", "35%"],
               })}

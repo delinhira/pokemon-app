@@ -38,6 +38,7 @@ const CatchPokemon = ({ pokemon }) => {
 
   useEffect(() => {
     if (catchModal) {
+      document.body.style.overflowY = "hidden";
       setLoading(true);
       setDuplicateNickname(false);
       setAddsuccess(false);
@@ -47,6 +48,8 @@ const CatchPokemon = ({ pokemon }) => {
       setTimeout(() => {
         setLoading(false);
       }, 3000);
+    } else {
+      document.body.style.overflowY = "auto";
     }
   }, [catchModal]);
 
@@ -146,7 +149,7 @@ const CatchPokemon = ({ pokemon }) => {
   };
 
   return (
-    <Overlay display={catchModal ? true : undefined}>
+    <Overlay display={catchModal ? "true" : undefined}>
       <Modal>
         {!catchModal ? null : loading ? loadingRender() : resultContentRender()}
       </Modal>

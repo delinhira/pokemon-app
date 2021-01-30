@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 
 import PokemonCard from "./PokemonCard";
 import LoadingPage from "../../Components/LoadingPage";
-import { Button } from "../../Components/Components";
+import { Button, Text } from "../../Components/Components";
 
 // Styled Components
 const ButtonContainer = styled.div`
@@ -30,6 +30,7 @@ const PokemonList = () => {
   const [activePage, setActivePage] = useState(1);
   const [nextOffset, setNextOffset] = useState(0);
   const [prevOffset, setPrevOffset] = useState(0);
+  const [myPokemon, setMyPokemon] = useState([]);
 
   const gqlVariables = {
     limit: 20,
@@ -47,9 +48,10 @@ const PokemonList = () => {
     setPokemons(data.pokemons.results);
     setNextOffset(data.pokemons.nextOffset);
     setPrevOffset(data.pokemons.prevOffset);
+    setMyPokemon(JSON.parse(localStorage.getItem("myPokemonLis")));
 
     console.log(data);
-  }, [data]);
+  }, [loading, error, data]);
 
   const nextPage = () => setActivePage(nextOffset);
   const prevPage = () => setActivePage(prevOffset);
@@ -61,6 +63,12 @@ const PokemonList = () => {
       ) : (
         <>
           <Container>
+            {myPokemon && (
+              <Text md bold mb>
+                You have {pokemons.length}{" "}
+                {myPokemon.length > 1 ? "pokemons" : "pokemon"}
+              </Text>
+            )}
             {pokemons.map((pokemon) => (
               <PokemonCard
                 key={pokemon.id}

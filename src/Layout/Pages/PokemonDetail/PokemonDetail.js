@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { ModalContext } from "../../../Context/ModalContext";
 
 import { useQuery } from "@apollo/client";
@@ -15,6 +15,7 @@ import LoadingPage from "../../Components/LoadingPage";
 import pokeball from "../../../Images/pokeball.png";
 import { Text } from "../../Components/Components";
 import ReleasePokemon from "../../Components/Modals/ReleasePokemon";
+import { mq } from "../../../Theme";
 
 // Styled Components
 const BackIcon = styled.div`
@@ -40,6 +41,7 @@ const Pokeball = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
   img {
     width: 30%;
     margin: 0 auto;
@@ -47,11 +49,17 @@ const Pokeball = styled.div`
   }
 `;
 
+const mqPokeball = mq({
+  width: ["100%", "70%", "50%"],
+  marginTop: ["0", "-5rem", "-10rem"],
+});
+
 const PokemonDetail = ({ myPokemon }) => {
-  const { pokemonName } = useParams();
   const [dataExist, SetDataExist] = useState(true);
   const [pokemon, setPokemon] = useState();
+  const { pokemonName } = useParams();
   const { toggleCatchModal } = useContext(ModalContext);
+  const history = useHistory();
 
   const gqlVariables = {
     name: pokemonName,
@@ -71,22 +79,15 @@ const PokemonDetail = ({ myPokemon }) => {
     }
 
     console.log(data);
-  }, [data]);
+  }, [loading, error, data]);
 
   const BackButtonRender = () => {
     return (
       <>
-        <Link
-          to="/pokemon"
-          css={{
-            textDecoration: "none",
-          }}
-        >
-          <BackIcon>
-            <i className="fas fa-chevron-left fa-2x" />
-            <Text red>Back</Text>
-          </BackIcon>
-        </Link>
+        <BackIcon onClick={() => history.goBack()}>
+          <i className="fas fa-chevron-left fa-2x" />
+          <Text red>Back</Text>
+        </BackIcon>
       </>
     );
   };
@@ -95,7 +96,7 @@ const PokemonDetail = ({ myPokemon }) => {
     return (
       <>
         <Image src={pokemon.sprites.front_default} alt={pokemon.name} />
-        <Pokeball>
+        <Pokeball css={mqPokeball}>
           <img
             className="pokeball"
             src={pokeball}
@@ -112,25 +113,28 @@ const PokemonDetail = ({ myPokemon }) => {
 
   return (
     <>
-      {loading && <LoadingPage />}
-      <Container>
-        {!loading && !dataExist ? (
-          <Text>Data doesn't exist.</Text>
-        ) : (
-          pokemon && (
-            <>
-              {BackButtonRender()}
-              <Text lg bold shadow mt>
-                {toTitleCase(pokemon.name)}
-              </Text>
-              {imageRender()}
-              <DetailTabs pokemon={pokemon} myPokemon={myPokemon} />
-              <CatchPokemon pokemon={pokemon} />
-            </>
-          )
-        )}
-        <ReleasePokemon />
-      </Container>
+      {loading ? (
+        <LoadingPage />
+      ) : (
+        <Container>
+          {!loading && !dataExist ? (
+            <Text>Data doesn't exist.</Text>
+          ) : (
+            pokemon && (
+              <>
+                {BackButtonRender()}
+                <Text lg bold shadow mt>
+                  {toTitleCase(pokemon.name)}
+                </Text>
+                {imageRender()}
+                <DetailTabs pokemon={pokemon} myPokemon={myPokemon} />
+                <CatchPokemon pokemon={pokemon} />
+              </>
+            )
+          )}
+          <ReleasePokemon />
+        </Container>
+      )}
     </>
   );
 };

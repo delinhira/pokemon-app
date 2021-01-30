@@ -10,7 +10,7 @@ const Container = styled.div`
   left: 0;
   width: 100vw;
   padding: 0.5rem 1rem;
-  z-index: 1;
+  /* z-index: 1; */
   box-sizing: border-box;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   opacity: 1;
@@ -35,11 +35,11 @@ const NavLinkContainer = styled.div`
   a {
     text-decoration: none;
     font-weight: 600;
-    color: ${(props) => props.theme.colors.blue};
+    color: ${(props) => props.theme.colors.lightGray};
     margin: 0 1rem;
   }
   .active {
-    color: ${(props) => props.theme.colors.yellow};
+    color: ${(props) => props.theme.colors.white};
     border-bottom: 2px solid ${(props) => props.theme.colors.yellow};
   }
 `;

@@ -5,11 +5,13 @@ import PokemonCard from "./PokemonCard";
 import { Text } from "../../Components/Components";
 import ReleasePokemon from "../../Components/Modals/ReleasePokemon";
 
-const Container = styled.div`
-  padding: 2rem;
+const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+`;
+const Container = styled.div`
+  padding: 2rem;
   min-height: 100;
 `;
 
@@ -37,14 +39,16 @@ const MyPokemonList = () => {
             You have {myPokemon.length}{" "}
             {myPokemon.length > 1 ? "pokemons" : "pokemon"}
           </Text>
-          {myPokemon.map((pokemon) => (
-            <PokemonCard
-              key={pokemon.id}
-              name={pokemon.name}
-              img={pokemon.sprites}
-              nickname={pokemon.nickname}
-            />
-          ))}
+          <CardsContainer>
+            {myPokemon.map((pokemon) => (
+              <PokemonCard
+                key={pokemon.id}
+                name={pokemon.name}
+                img={pokemon.sprites}
+                nickname={pokemon.nickname}
+              />
+            ))}
+          </CardsContainer>
           <ReleasePokemon />
         </Container>
       )}

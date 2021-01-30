@@ -5,8 +5,8 @@ import { Text } from "../../Components/Components";
 const PokemonMoves = ({ moves }) => {
   return (
     <>
-      {moves.map((move) => (
-        <Text key={move}>{toTitleCase(move.move.name)}</Text>
+      {moves.map((move, index) => (
+        <Text key={index}>{toTitleCase(move.move.name)}</Text>
       ))}
     </>
   );

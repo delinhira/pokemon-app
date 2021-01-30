@@ -18,9 +18,9 @@ import Footer from "./Layout/Components/Footer";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
-    graphqlErrors.map(({ message, location, path }) => {
-      alert(`Graphql error ${message}`);
-    });
+    graphqlErrors.map(({ message, location, path }) =>
+      alert(`Graphql error ${message}`)
+    );
   }
 });
 

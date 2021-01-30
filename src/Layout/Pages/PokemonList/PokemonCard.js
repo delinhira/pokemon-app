@@ -53,15 +53,15 @@ const Title = styled.div`
   border-radius: 50px;
 `;
 
-const responsive = mq({
-  width: ["22%", "45%", "95%"],
+const mqContainer = mq({
+  width: ["95%", "45%", "22%"],
 });
 
 const PokemonCard = ({ name, img, nickname }) => {
   const { toggleReleaseModal } = useContext(ModalContext);
 
   return (
-    <Container css={responsive}>
+    <Container css={mqContainer}>
       <Link to={`/pokemon/${name}`}>
         <Title>
           <Text md bold>
