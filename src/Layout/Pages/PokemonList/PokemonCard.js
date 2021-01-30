@@ -29,7 +29,8 @@ const Container = styled.div`
   background-repeat: repeat;
 
   &:hover {
-    box-shadow: 1px 4px 0.5rem rgba(0, 0, 0, 0.1);
+    /* box-shadow: 1px 4px 0.5rem rgba(0, 0, 0, 0.1); */
+    border-color: ${(props) => props.theme.colors.blue};
   }
   a {
     text-decoration: none;

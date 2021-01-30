@@ -6,7 +6,6 @@ import styled from "@emotion/styled";
 import { Button, Text } from "../../Components/Components";
 import PokemonCard from "./PokemonCard";
 import LoadingPage from "../../Components/LoadingPage";
-import { useHistory } from "react-router-dom";
 
 // Styled Components
 const ButtonContainer = styled.div`
@@ -31,7 +30,6 @@ const PokemonList = () => {
   const [nextOffset, setNextOffset] = useState(0);
   const [prevOffset, setPrevOffset] = useState(0);
   const [myPokemon, setMyPokemon] = useState([]);
-  const history = useHistory();
 
   const gqlVariables = {
     limit: 20,
@@ -54,11 +52,9 @@ const PokemonList = () => {
 
   const nextPage = () => {
     setActivePage(nextOffset);
-    history.push(`${history.pathname}?offset=${nextOffset}`);
   };
   const prevPage = () => {
     setActivePage(prevOffset);
-    history.push(`${history.pathname}?offset=${nextOffset}`);
   };
 
   return (

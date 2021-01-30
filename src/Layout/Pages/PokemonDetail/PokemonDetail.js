@@ -48,6 +48,10 @@ const Pokeball = styled.div`
     cursor: pointer;
     margin: 0 auto;
     width: 30%;
+    &:hover {
+      background-color: ${(props) => props.theme.colors.red};
+      border-radius: 100px;
+    }
   }
 `;
 

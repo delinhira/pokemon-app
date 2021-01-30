@@ -16,7 +16,7 @@ const MovesContainer = styled.div`
 `;
 
 const mqMovesContainer = mq({
-  width: ["100%", "90%", "90%"],
+  width: ["80%", "90%", "90%"],
 });
 
 const mqText = mq({

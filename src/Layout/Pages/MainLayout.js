@@ -7,6 +7,7 @@ import background from "../../Images/background.webp";
 import MyPokemonList from "./PokemonList/MyPokemonList";
 import PokemonRouter from "./PokemonRouter";
 import PokemonList from "./PokemonList/PokemonList";
+import WrongPath from "../Components/WrongPath";
 
 // Styled Components
 const Background = styled.div`
@@ -40,11 +41,13 @@ const MainPage = () => {
             <Route path="/pokemon">
               <PokemonRouter />
             </Route>
-            <Route path="/404">Error 404: Not Found</Route>
+            <Route path="/wrong-path">
+              <WrongPath />
+            </Route>
             <Route exact path="/">
               <PokemonList />
             </Route>
-            <Redirect from="*" to="/404" />
+            <Redirect from="*" to="/wrong-path" />
           </Switch>
         </ModalProvider>
       </Container>
