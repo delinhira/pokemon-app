@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
-import logo from "../../Images/logo.png";
+import logo from "../../Images/logo.webp";
 
 // Styled Components
 const Container = styled.div`

@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { ModalProvider } from "../../Context/ModalContext";
 import styled from "@emotion/styled";
 // Components
-import background from "../../Images/background.jpg";
+import background from "../../Images/background.webp";
 import MyPokemonList from "./PokemonList/MyPokemonList";
 import PokemonRouter from "./PokemonRouter";
 import PokemonList from "./PokemonList/PokemonList";

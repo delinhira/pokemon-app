@@ -14,7 +14,7 @@ import { Text } from "../../Components/Components";
 import CatchPokemon from "../../Components/Modals/CatchPokemon";
 import DetailTabs from "./DetailTabs";
 import LoadingPage from "../../Components/LoadingPage";
-import pokeball from "../../../Images/pokeball.png";
+import pokeball from "../../../Images/pokeball.webp";
 import ReleasePokemon from "../../Components/Modals/ReleasePokemon";
 
 // Styled Components

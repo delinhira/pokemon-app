@@ -33,7 +33,7 @@ const MyPokemonList = () => {
         <LoadingPage />
       ) : !myPokemon || myPokemon.length === 0 ? (
         <Text sm pt pb bold shadow>
-          You don't own any pokemon.
+          You don't have any pokemon.
         </Text>
       ) : (
         <Container>
