@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // Apollo GraphQL
 import {
   ApolloClient,
@@ -35,6 +35,10 @@ const client = new ApolloClient({
 });
 
 const App = () => {
+  useEffect(() => {
+    localStorage.setItem("myPokemonList", JSON.stringify([]));
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <ApolloProvider client={client}>
